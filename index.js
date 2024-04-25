@@ -118,7 +118,7 @@ const cargarEjercicios = async () => {
     const resultParamMuscle = await response.json();
 
     if (response.status === 200) {
-      if (paramMuscle1 === "upper arms" && paramMuscle2 === "upper arms") {
+      if (paramMuscle1 === "upper arms" ) {
         resultParamMuscle1Filter = resultParamMuscle.filter(
           (ejercicio) =>
             (ejercicio.equipment === "barbell" ||
@@ -136,7 +136,7 @@ const cargarEjercicios = async () => {
           (ejercicio) =>
             ejercicio.equipment === "barbell" || ejercicio.equipment === "cable"
         );
-      } else if (paramMuscle1 === "back" && paramMuscle2 === "back") {
+      } else if (paramMuscle1 === "back" ) {
         resultParamMuscle1Filter = resultParamMuscle.filter(
           (ejercicio) =>
             (ejercicio.equipment === "barbell" ||

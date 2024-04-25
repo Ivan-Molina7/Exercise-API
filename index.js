@@ -11,12 +11,14 @@ let paramMuscle2;
 let paramMuscle3;
 let paramMuscle4;
 
+let exerciseAmount = 0;
+
 let resultParamMuscle1Filter = [];
 let resultParamMuscle2Filter = [];
 let resultParamMuscle3Filter = [];
 let resultParamMuscle4Filter = [];
 
-let exerciseAmount = 0;
+
 
 let results = [];
 
@@ -36,44 +38,68 @@ espalda.addEventListener("click", () => {
 
 pierna.addEventListener("click", () => {
   paramMuscle1 = "upper legs";
-  paramMuscle2 = "hasmstrings";
+  paramMuscle2 = "hamstrings";
   paramMuscle3 = "glutes";
   paramMuscle4 = "lower legs";
 });
 
 beginner.addEventListener("click", () => {
   exerciseAmount = 4;
-  if(paramMuscle4){
-	cargarEjerciciosPierna();
-}else {
-	cargarEjercicios();
-}
+  if (paramMuscle4) {
+    cargarEjerciciosPierna();
+  } else {
+    cargarEjercicios();
+  }
 });
 
 intermediate.addEventListener("click", () => {
   exerciseAmount = 6;
-  cargarEjercicios();
+
+  if (paramMuscle4) {
+    cargarEjerciciosPierna();
+  } else {
+    cargarEjercicios();
+  }
 });
 
-function randomExercises(array) {
+function randomExercises(array, numCant) {
   let exercisesPerMuscle;
 
-  if (paramMuscle4 && exerciseAmount == 4) {
-	exercisesPerMuscle = exerciseAmount / 4;
-	console.log("Funciono");
-  }else if (paramMuscle2) {
+  if (paramMuscle4 && exerciseAmount == 6) {
+
+    console.log("Entre a la función");
+    let contador = 0;
+    while (contador < numCant) {
+      const exerciseIndex = Math.floor(Math.random() * array.length);
+      results.push(array[exerciseIndex]);
+      array.splice(exerciseIndex, 1);
+      contador++;
+    }
+  } else if (paramMuscle4 && exerciseAmount == 4) {
+    exercisesPerMuscle = exerciseAmount / 4;
+    console.log("Funciono");
+    // Selecciona 2 ejercicios aleatorios
+    for (let i = 0; i < exercisesPerMuscle; i++) {
+      const exerciseIndex = Math.floor(Math.random() * array.length);
+      results.push(array[exerciseIndex]);
+      array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
+    }
+  } else if (paramMuscle2) {
     exercisesPerMuscle = exerciseAmount / 2;
-	console.log("en el if");
-  }else {
+    // Selecciona 2 ejercicios aleatorios
+    for (let i = 0; i < exercisesPerMuscle; i++) {
+      const exerciseIndex = Math.floor(Math.random() * array.length);
+      results.push(array[exerciseIndex]);
+      array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
+    }
+  } else {
     exercisesPerMuscle = exerciseAmount;
-	console.log("No tomo nada");
-  }
-  
-  // Selecciona 2 ejercicios aleatorios
-  for (let i = 0; i < exercisesPerMuscle; i++) {
-    const exerciseIndex = Math.floor(Math.random() * array.length);
-    results.push(array[exerciseIndex]);
-    array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
+    // Selecciona 2 ejercicios aleatorios
+    for (let i = 0; i < exercisesPerMuscle; i++) {
+      const exerciseIndex = Math.floor(Math.random() * array.length);
+      results.push(array[exerciseIndex]);
+      array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
+    }
   }
 }
 
@@ -212,15 +238,15 @@ const cargarEjerciciosPierna = async () => {
     }
   } catch (error) {}
 
-  randomExercises(resultParamMuscle1Filter);
-  randomExercises(resultParamMuscle2Filter);
-  randomExercises(resultParamMuscle3Filter);
-  randomExercises(resultParamMuscle4Filter);
+  randomExercises(resultParamMuscle1Filter, 2);
+  randomExercises(resultParamMuscle2Filter, 2);
+  randomExercises(resultParamMuscle3Filter, 1);
+  randomExercises(resultParamMuscle4Filter, 1);
   mostrarEjercicios(results);
 };
 
 function mostrarEjercicios(array) {
-  results.forEach((ejercicio) => {
+  array.forEach((ejercicio) => {
     document.querySelector(".ejercicios").innerHTML += `
 			<div class="card">
 			<img src="${ejercicio.gifUrl}" alt="">

@@ -303,9 +303,10 @@ li {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
-
+  padding-top: 50px;
+  border-top: 1px solid rgba(255, 255, 255, 0.301);
   gap: 2.5em;
   margin-bottom: 50px;
 }
@@ -323,13 +324,13 @@ li {
 .footer__list{
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   gap: .4em;
 }
 
 .footer__list * {
   color: var(--text-color) !important;
-  text-align: left ;
+  text-align: center ;
 }
 
 .footer__list-item {
@@ -409,8 +410,17 @@ li {
 
   .footer{
     flex-direction: row;
-    border-top: 1px solid rgba(255, 255, 255, 0.301);
-    padding-top: 50px;
+ 
+
   }
 
-}
+  .footer {
+    align-items: flex-start;
+  }
+  .footer__list * {
+
+    text-align: left ;
+  }
+  
+    }
+

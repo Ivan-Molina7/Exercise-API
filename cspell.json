@@ -1,0 +1,33 @@
+{
+    "version": "0.2",
+    "ignorePaths": [],
+    "dictionaryDefinitions": [],
+    "dictionaries": [],
+    "words": [
+        "adipisicing",
+        "amet",
+        "asperiores",
+        "consequuntur",
+        "corporis",
+        "cupiditate",
+        "debitis",
+        "distinctio",
+        "eaque",
+        "eligendi",
+        "elit",
+        "Facilis",
+        "harum",
+        "iure",
+        "Krushi",
+        "molestiae",
+        "officiis",
+        "repudiandae",
+        "saepe",
+        "ullam",
+        "voluptate"
+    ],
+    "ignoreWords": [
+        "consectetur"
+    ],
+    "import": []
+}

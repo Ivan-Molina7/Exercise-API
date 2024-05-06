@@ -33,17 +33,32 @@ body {
     align-items: flex-start;
 }
 
-.card{
-	/* display: none; */
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	width: 400px;
-	background-color: beige;
-	margin: 1em;
-	padding: 2em;
-	gap: 1em;
+.card__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 200px;
+    background-color: beige;
+    margin: 1em;
+    padding: 2em;
+    gap: 1em;
+}
+
+.routine {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Asegura que las tarjetas dentro de una rutina se distribuyan uniformemente */
+    border: 2px solid;
+    margin: 2em;
+    padding: 1em; /* Añade un poco de padding para no tener los bordes pegados a las tarjetas */
 }
 
 .card img{	

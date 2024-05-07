@@ -1,5 +1,6 @@
 import { imprimir } from "./utils.js";
 import { getLocalStorage, setLocalStorage } from "./utils.js";
+import { loader, levelSection } from "./process.js";
 
 let espalda = document.querySelector(".espalda");
 let pecho = document.querySelector(".pecho");
@@ -38,7 +39,8 @@ let idRoutines = 0;
 
 let keyRutinas = "rutinasGuardadas";
 
-
+const cardContainer = document.querySelector(".card__container");
+const cardMain = document.querySelector(".cards__main");
 
 pecho.addEventListener("click", () => {
   paramMuscle1 = "chest";
@@ -66,9 +68,9 @@ beginner.addEventListener("click", () => {
   exerciseAmount = 4;
   if (paramMuscle4) {
     cargarEjerciciosPierna();
-  } else if (paramMuscle2 == "shoulders" ) {
+  } else if (paramMuscle2 == "shoulders") {
     cargarEjerciciosPecho();
-  }else{
+  } else {
     cargarEjercicios();
   }
 });
@@ -94,64 +96,87 @@ FavoritosShow.addEventListener("click", () => {
   mostrarFavoritos(rutinasGuardadas);
 });
 
+const agregarGuardada = () => {
+  let rutinaElegida = routine;
+  // Ir a buscar al local storage las rutinas guardadas
+  let rutinasGuardadas = getLocalStorage(keyRutinas) || [];
+
+  // Verificar si la rutina elegida ya existe en las rutinas guardadas
+  const rutinaExistente = rutinasGuardadas.some(
+    (rutina) => JSON.stringify(rutina) === JSON.stringify(rutinaElegida)
+  );
+
+  // Si la rutina elegida ya existe, mostrar un mensaje o realizar alguna acción
+  if (rutinaExistente) {
+    console.log("¡La rutina ya está en favoritos!");
+    // Puedes mostrar un mensaje al usuario o realizar otra acción apropiada
+  } else {
+    // Agregar la rutina elegida a la lista de rutinas guardadas
+    rutinasGuardadas.push(rutinaElegida);
+    // Guardar la lista de rutinas actualizada en el local storage
+    setLocalStorage(keyRutinas, rutinasGuardadas);
+    console.log("¡Rutina agregada a favoritos!");
+  }
+};
+
 function randomExercises(array, numCant) {
   let exercisesPerMuscle;
 
- if(array != undefined){
-  if (paramMuscle4 && exerciseAmount == 6) {
-    console.log("Entre a la función");
-    let contador = 0;
-    while (contador < numCant) {
-      const exerciseIndex = Math.floor(Math.random() * array.length);
-      routine.push(array[exerciseIndex]);
-      array.splice(exerciseIndex, 1);
-      contador++;
-    }
-  } else if (paramMuscle2 == "shoulders" && exerciseAmount == 6) {
-    let contador = 0;
+  if (array != undefined) {
+    if (paramMuscle4 && exerciseAmount == 6) {
+      console.log("Entre a la función");
+      let contador = 0;
+      while (contador < numCant) {
+        const exerciseIndex = Math.floor(Math.random() * array.length);
+        routine.push(array[exerciseIndex]);
+        array.splice(exerciseIndex, 1);
+        contador++;
+      }
+    } else if (paramMuscle2 == "shoulders" && exerciseAmount == 6) {
+      let contador = 0;
 
-    while (contador < numCant) {
-      const exerciseIndex = Math.floor(Math.random() * array.length);
-      console.log(array[exerciseIndex]);
-      routine.push(array[exerciseIndex]);
-      array.splice(exerciseIndex, 1);
+      while (contador < numCant) {
+        const exerciseIndex = Math.floor(Math.random() * array.length);
+        console.log(array[exerciseIndex]);
+        routine.push(array[exerciseIndex]);
+        array.splice(exerciseIndex, 1);
 
-      contador++;
-    }
-  } else if (
-    paramMuscle2 &&
-    paramMuscle2 != "shoulders" &&
-    paramMuscle2 != "back" &&
-    paramMuscle2 != "upper arms" &&
-    exerciseAmount == 4
-  ) {
-    exercisesPerMuscle = exerciseAmount / 4;
-    console.log("Funciono 1");
-    //Selecciona 2 ejercicios aleatorios
-    for (let i = 0; i < exercisesPerMuscle; i++) {
-      const exerciseIndex = Math.floor(Math.random() * array.length);
-      routine.push(array[exerciseIndex]);
-      array.splice(exerciseIndex, 1); //Elimina el ejercicio seleccionado para evitar duplicados
-    }
-  } else if (paramMuscle2) {
-    exercisesPerMuscle = exerciseAmount / 2;
-    // Selecciona 2 ejercicios aleatorios
-    for (let i = 0; i < exercisesPerMuscle; i++) {
-      const exerciseIndex = Math.floor(Math.random() * array.length);
-      routine.push(array[exerciseIndex]);
-      array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
-    }
-  } else {
-    exercisesPerMuscle = exerciseAmount;
-    console.log("Pecho beginner");
-    // Selecciona 2 ejercicios aleatorios
-    for (let i = 0; i < exercisesPerMuscle; i++) {
-      const exerciseIndex = Math.floor(Math.random() * array.length);
-      routine.push(array[exerciseIndex]);
-      array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
+        contador++;
+      }
+    } else if (
+      paramMuscle2 &&
+      paramMuscle2 != "shoulders" &&
+      paramMuscle2 != "back" &&
+      paramMuscle2 != "upper arms" &&
+      exerciseAmount == 4
+    ) {
+      exercisesPerMuscle = exerciseAmount / 4;
+      console.log("Funciono 1");
+      //Selecciona 2 ejercicios aleatorios
+      for (let i = 0; i < exercisesPerMuscle; i++) {
+        const exerciseIndex = Math.floor(Math.random() * array.length);
+        routine.push(array[exerciseIndex]);
+        array.splice(exerciseIndex, 1); //Elimina el ejercicio seleccionado para evitar duplicados
+      }
+    } else if (paramMuscle2) {
+      exercisesPerMuscle = exerciseAmount / 2;
+      // Selecciona 2 ejercicios aleatorios
+      for (let i = 0; i < exercisesPerMuscle; i++) {
+        const exerciseIndex = Math.floor(Math.random() * array.length);
+        routine.push(array[exerciseIndex]);
+        array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
+      }
+    } else {
+      exercisesPerMuscle = exerciseAmount;
+      console.log("Pecho beginner");
+      // Selecciona 2 ejercicios aleatorios
+      for (let i = 0; i < exercisesPerMuscle; i++) {
+        const exerciseIndex = Math.floor(Math.random() * array.length);
+        routine.push(array[exerciseIndex]);
+        array.splice(exerciseIndex, 1); // Elimina el ejercicio seleccionado para evitar duplicados
+      }
     }
   }
- }
 }
 
 const cargarEjercicios = async () => {
@@ -364,22 +389,20 @@ const cargarEjerciciosPecho = async () => {
     console.log(error);
   }
 
-  if(exerciseAmount == 6){
+  if (exerciseAmount == 6) {
     randomExercises(resultParamMuscle1Filter, 4);
     randomExercises(resultParamMuscle2Filter, 2);
     mostrarEjercicios(routine);
-  }else{
+  } else {
     randomExercises(resultParamMuscle1Filter, 2);
     randomExercises(resultParamMuscle2Filter, 2);
     mostrarEjercicios(routine);
   }
- 
-  
 };
 
 function rutinaAleatoria() {
   routine = [];
-  document.querySelector(".card__container").innerHTML = ``;
+  cardContainer.innerHTML = ``;
 
   if (paramMuscle4) {
     // console.log("Filter 1");
@@ -402,108 +425,203 @@ function rutinaAleatoria() {
     randomExercises(resultParamMuscle1Filter, 4);
     randomExercises(resultParamMuscle2Filter, 2);
     mostrarEjercicios(routine);
-  }else {
+  } else {
     randomExercises(resultParamMuscle1Filter);
     randomExercises(resultParamMuscle2Filter);
     mostrarEjercicios(routine);
   }
 }
 function mostrarEjercicios(array) {
-  console.log(array);
 
-  const cardContainer = document.querySelector(".card__container");
-  cardContainer.innerHTML = "";
+  loader.style.display = "block";
+  cardMain.style.display = "none";
 
-  const btnFavorite = document.createElement("button");
-  btnFavorite.textContent = "Favoritos";
-  btnFavorite.className = "btn-favorite";
-  btnFavorite.addEventListener("click", () => {
-    agregarGuardada();
-  });
+  // Ocultar gmusculares después de mostrar el loader
+  levelSection.style.display = "none";
 
+  // Simular una carga ficticia (por ejemplo, un retraso de 1 segundo)
+  setTimeout(() => {
+      // Ocultar el loader
+      loader.style.display = "none";
+      cardMain.style.display = "flex";
+
+      // Mostrar levelSection después de que el loader se haya ocultado
+      console.log(array);
+
+  let cardsMain = document.querySelector(".cards__main");
+  cardsMain.style.display = "flex";
+
+  const titleDiv = document.createElement("div");
+  titleDiv.className = "routine__titles";
+  titleDiv.innerHTML = `
+    <h2 class="text-xl">Your ${array[0].target} Routine</h2>
+    <a href="#" class="button btn-favorite">Add favorites</a>
+  `;
+
+  let levelSection = document.querySelector(".level-section");
+  levelSection.style.display = "none";
 
   const routineDiv = document.createElement("div");
   routineDiv.className = "routine";
 
-  routineDiv.appendChild(btnFavorite);
+  routineDiv.appendChild(titleDiv);
+
+  const btnFavorite = routineDiv.querySelector(".btn-favorite");
+
+  btnFavorite.addEventListener("click", () => {
+    agregarGuardada();
+  });
 
   array.forEach((ejercicio) => {
-      if(ejercicio != undefined){
-        const exerciseDiv = document.createElement("div");
+    if (ejercicio != undefined) {
+      const exerciseDiv = document.createElement("div");
       exerciseDiv.className = "card";
       exerciseDiv.innerHTML = `
-        <img src="${ejercicio.gifUrl}" alt="${ejercicio.name}">
-        <h3>${ejercicio.name}</h3>
-        <h3>${ejercicio.target}</h3>
+    
+         <figure class="card__thumbnail">
+           <img src="${ejercicio.gifUrl}" alt="${ejercicio.name}" class="card__img">    
+         </figure>
+           <div class="information">
+             <p class="">${ejercicio.equipment}</p>
+             <p class="">${ejercicio.target}</p>
+           </div>
+           <h3 class="text-xl">${ejercicio.name}</h3>
+      
+     
       `;
+
+      exerciseDiv.addEventListener("click", () => expandirEjercicio(ejercicio));
       routineDiv.appendChild(exerciseDiv);
-      }
+    }
   });
   cardContainer.appendChild(routineDiv);
+  }, 500); 
+ 
 }
 
-function mostrarFavoritos(rutinasFavoritos) {
-  // Seleccionar el contenedor principal y limpiar su contenido previo
-  const cardContainer = document.querySelector(".card__container");
+function expandirEjercicio(ejercicio) {
+  const cardExpand = document.createElement("div");
+  cardContainer.style.opacity="0.5";
+
+   // Crear el div para los músculos secundarios
+   let secondaryMuscles = document.createElement("div");
+   secondaryMuscles.className = "secondary-muscles";
+ 
+   // Llenar secondaryMuscles con cada músculo secundario
+   ejercicio.secondaryMuscles.forEach((muscle) => {
+     secondaryMuscles.innerHTML += `<p>${muscle}</p>`;
+   });
+
+
+  cardExpand.className = "card__expand";
+  cardExpand.innerHTML = ` 
+  <i class="fa-solid fa-xmark cerrar"></i>
+  <figure class="card__expand-thumbnail">
+    <img src="${ejercicio.gifUrl}" alt="${ejercicio.name}" class="card__expand-img">    
+  </figure>
+  <h3 class="text-xl">${ejercicio.name}</h3>
+    <div class="card__expand-information">
+      <div class="expand-information__group">
+        <h4>Target:</h4>
+        <div  class="expand-information__muscles">    
+            <p class="target">${ejercicio.target}</p>
+            ${secondaryMuscles.outerHTML}
+          </div>
+      </div>
+      <div class="expand-information__group">
+        <h4>Equipment:</h4>
+        <p class="">${ejercicio.equipment}</p>
+      </div>
+    </div>
+
+    <div class="card__expand-instructions">
+      <p>${ejercicio.instructions}</p>
+    </div>`;
+
+  const cerrar = cardExpand.querySelector(".cerrar");
+  cerrar.addEventListener("click", () => {
+    cardExpand.remove();
+    cardContainer.style.opacity="1";
+  });
+
+  cardMain.appendChild(cardExpand);
+}
+
+
+function mostrarFavoritos(array) {
+
+  loader.style.display = "block";
+  cardMain.style.display = "none";
+
+  // Ocultar gmusculares después de mostrar el loader
+  levelSection.style.display = "none";
+
+  // Simular una carga ficticia (por ejemplo, un retraso de 1 segundo)
+  setTimeout(() => {
+      // Ocultar el loader
+      loader.style.display = "none";
+      cardMain.style.display = "flex";
+
+      reroll.style.display = "none";
+
   cardContainer.innerHTML = "";
 
-  // Iterar sobre cada rutina en la lista de rutinas favoritas
-  rutinasFavoritos.forEach((rutina) => {
+  const cardTitle = document.querySelector(".card-title");
+  cardTitle.textContent = "Saved Routines";
+
+  array.forEach((rutina) => {
     // Crear un div para contener todos los ejercicios de esta rutina
+    let cardsMain = document.querySelector(".cards__main");
+    cardsMain.style.display = "flex";
+
+    const titleDiv = document.createElement("div");
+    titleDiv.className = "routine__titles";
+    titleDiv.innerHTML = `
+      <h2 class="text-xl">Your ${rutina[0].target} Routine</h2>
+      <a href="#" class="button btn-delete">Delete favorites <i class="fa-solid fa-trash"></i></a>
+    `;
+
+    let levelSection = document.querySelector(".level-section");
+    levelSection.style.display = "none";
+
     const routineDiv = document.createElement("div");
     routineDiv.className = "routine";
 
-    const btnEliminar = document.createElement("button");
-    btnEliminar.textContent = "Eliminar";
-    btnEliminar.addEventListener("click", () => eliminarGuardada(rutina));
+    routineDiv.appendChild(titleDiv);
 
-  
+
+    const btnDelete = routineDiv.querySelector(".btn-delete");
+    btnDelete.addEventListener("click", () => eliminarGuardada(rutina));
+
+   
     // Iterar sobre cada ejercicio en la rutina
     rutina.forEach((ejercicio) => {
       // Crear un div para cada ejercicio, configurando su estructura HTML
       const exerciseDiv = document.createElement("div");
       exerciseDiv.className = "card";
       exerciseDiv.innerHTML = `
-        <img src="${ejercicio.gifUrl}" alt="${ejercicio.name}">
-        <h3>${ejercicio.name}</h3>
-        <h3>${ejercicio.target}</h3>
-       
+      <figure class="card__thumbnail">
+      <img src="${ejercicio.gifUrl}" alt="${ejercicio.name}" class="card__img">    
+    </figure>
+      <div class="information">
+        <p class="">${ejercicio.equipment}</p>
+        <p class="">${ejercicio.target}</p>
+      </div>
+      <h3 class="text-xl">${ejercicio.name}</h3>
       `;
 
-    
       // Añadir el div del ejercicio al div de la rutina
+      exerciseDiv.addEventListener("click", () => expandirEjercicio(ejercicio));
       routineDiv.appendChild(exerciseDiv);
     });
 
     // Añadir el div de la rutina completa al contenedor principal
-    routineDiv.appendChild(btnEliminar);
+ 
     cardContainer.appendChild(routineDiv);
   });
-  document.querySelectorAll(".btn-eliminar").forEach((button)=> button.addEventListener("click", ()=> eliminarGuardada(rutina)))
+  }, 500);
 }
 
-const agregarGuardada = () => {
-  let rutinaElegida = routine;
-  // Ir a buscar al local storage las rutinas guardadas
-  let rutinasGuardadas = getLocalStorage(keyRutinas) || [];
-
-  // Verificar si la rutina elegida ya existe en las rutinas guardadas
-  const rutinaExistente = rutinasGuardadas.some((rutina) =>
-    JSON.stringify(rutina) === JSON.stringify(rutinaElegida)
-  );
-
-  // Si la rutina elegida ya existe, mostrar un mensaje o realizar alguna acción
-  if (rutinaExistente) {
-    console.log("¡La rutina ya está en favoritos!");
-    // Puedes mostrar un mensaje al usuario o realizar otra acción apropiada
-  } else {
-    // Agregar la rutina elegida a la lista de rutinas guardadas
-    rutinasGuardadas.push(rutinaElegida);
-    // Guardar la lista de rutinas actualizada en el local storage
-    setLocalStorage(keyRutinas, rutinasGuardadas);
-    console.log("¡Rutina agregada a favoritos!");
-  }
-}
 // Función para eliminar una rutina de favoritos y del local storage
 const eliminarGuardada = (rutinaEliminar) => {
   // Ir a buscar al local storage las rutinas guardadas
@@ -516,37 +634,5 @@ const eliminarGuardada = (rutinaEliminar) => {
   // Volver a guardar las rutinas filtradas en el local storage
   setLocalStorage(keyRutinas, filtradas);
 
-  mostrarFavoritos(filtradas)
-}
-
-
-// function agregarFavoritos() {
-//   routine;
-//   favoritesRoutines.push(routine);
-//   console.log(favoritesRoutines);
-//}
-
-// const agregarGuardada = () =>{
-//   let rutinaElegida = routine;
-//   // ir a buscar al localstorage cuales ciudades hay ahora 
-//   let rutinasGuardadas = getLocalStorage(keyRutinas) || [];
-//   // agregar mi ciudad a la lista
-//   rutinasGuardadas.push(rutinaElegida)        
-//   // ciudadesGuardadas.push(ciudadElegida)
-//   // publicar la lista nuevamente
-//   setLocalStorage(keyRutinas,rutinasGuardadas)
- 
-// }
-
-// const eliminarGuardada = (rutinaEliminar) => {
-//   // Ir a buscar al local storage las rutinas guardadas
-//   let rutinasGuardadas = getLocalStorage(keyRutinas);
-
-//   // Filtrar las rutinas guardadas para eliminar la que se quiere eliminar
-//   let filtradas = rutinasGuardadas.filter((rutina) => rutina !== rutinaEliminar);
-
-//   // Volver a guardar las rutinas filtradas en el local storage
-//   setLocalStorage(keyRutinas, filtradas);
-// }
-
-// Función para agregar una rutina a favoritos y almacenarla en el local storage
+  mostrarFavoritos(filtradas);
+};

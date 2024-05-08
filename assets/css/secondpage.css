@@ -422,10 +422,6 @@ li {
 	gap: 1em;
 }
 
-.mostrarFavorite{
-	background-color: rgb(234, 84, 84);
-	color: var(--text-color) !important;
-}
 
 
 
@@ -460,23 +456,30 @@ li {
 	-o-border-radius: 15px;
 }
 
-.routine h2{
-	width: 100%;
-
-	margin: 0;
-}
 
 .routine__titles{
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	
+	flex-wrap: wrap;
+	gap: .5em
+}
+ 
+
+.routine__titles h2{
+	display: inline-block;
+	margin: 0;
+}
+
+.btn-mostrarFavorite{
+	background-color: rgb(182, 49, 42);
+	color: var(--text-color) !important;
 }
 
 .btn-favorite{
-	background-color: rgb(93, 186, 93);
-	color: var(--text-color) !important;
+	background-color: rgb(42, 182, 82);
+	color: white !important;
 }
 
 .card {

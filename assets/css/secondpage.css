@@ -95,7 +95,7 @@ li {
 	text-decoration: none;
 	border: none;
 	border-radius: 10px;
-	cursor: pointer;
+	cursor: pointer !important;
 	text-align: center;
 	transition: 0.5s;
    width: 170px !important;
@@ -115,6 +115,12 @@ li {
 	background-color: var(--light-color);
   }
   
+.button--green {
+	background-color: green;
+	color: white !important;
+
+}
+
   .btn-delete {
 	width: 250px !important;
 	
@@ -171,6 +177,7 @@ li {
 	height: auto;
 	min-height:60vh;
 	align-items: center;
+	position: relative;
 }
 
 .gmusculares {
@@ -200,18 +207,29 @@ li {
 .gmuscular-card {
 	display: flex;
 	align-items: center;
+	justify-content: flex-end;
 	flex-direction: column;
 	background-color: #111;
-	width: 400px;
-	height: 400px;
+	width: 300px;
+	height: 300px;
 	padding: 2em;
 	border-radius: 15px;
 	-moz-border-radius: 15px;
 	-ms-border-radius: 15px;
 	-o-border-radius: 15px;
 	-webkit-border-radius: 15px;
-	gap: 1em;
+	gap: 2em;
 	cursor: pointer;
+	box-shadow: rgba(114, 114, 114, 0.092) 0px 0px 15px 2px inset;
+	transition: 0.4s;
+	-webkit-transition: 0.4s;
+	-moz-transition: 0.4s;
+	-ms-transition: 0.4s;
+	-o-transition: 0.4s;
+}
+
+.gmuscular-card:hover, .level-card:hover {
+	scale: 1.03;
 }
 
 .gmuscular-card__thumbnail {
@@ -220,8 +238,13 @@ li {
 }
 
 .gmuscular-card img {
-	width: 200px !important;
-	height: 200px !important;
+	width: 150px !important;
+	height: 150px !important;
+}
+
+.gmuscular-card h2 {
+	margin: 0;
+	font-weight: 500;
 }
 
 .level-section {
@@ -261,6 +284,12 @@ li {
 	-webkit-border-radius: 15px;
 	gap: 1em;
 	cursor: pointer;
+	transition: .4s;
+	box-shadow: rgba(114, 114, 114, 0.092) 0px 0px 15px 2px inset;
+	-webkit-transition: .4s;
+	-moz-transition: .4s;
+	-ms-transition: .4s;
+	-o-transition: .4s;
 }
 
 .level-card__thumbnail {
@@ -369,11 +398,8 @@ li {
 		align-items: flex-start;
 	}
 
-	.footer__list * {
-
-		text-align: left;
-	}
-
+	
+	
 }
 
 .cards__main{
@@ -542,6 +568,8 @@ li {
 	text-align: center;
 	gap: 2em;
 	border: 1px solid black;
+	box-shadow: rgba(114, 114, 114, 0.092) 0px 0px 15px 5px inset;
+
 }
 
 .card__expand h3{
@@ -614,6 +642,24 @@ margin: 0;
 }
 
 
+.modal__background{
+
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(0, 0, 0, 0.786);
+  
+	z-index: 2000;
+	transition: 0.3s all ease;
+	justify-content: center;
+	align-items: center;
+  }
+  
+
+
 .expand-information__group p{
 	border: 1px solid rgb(255, 255, 255);
 	padding: 5px 15px;
@@ -641,3 +687,8 @@ margin: 0;
 	margin: 0 auto;
 	padding-bottom: 2em;
 }
+
+.no-routines{
+	text-align: center;
+}
+

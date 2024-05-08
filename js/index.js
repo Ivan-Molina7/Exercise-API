@@ -1,6 +1,6 @@
 import { imprimir } from "./utils.js";
 import { getLocalStorage, setLocalStorage } from "./utils.js";
-import { loader, levelSection } from "./process.js";
+import { loader, levelSection, gmusculares } from "./process.js";
 
 let espalda = document.querySelector(".espalda");
 let pecho = document.querySelector(".pecho");
@@ -38,6 +38,8 @@ let favoritesRoutines = [];
 let idRoutines = 0;
 
 let keyRutinas = "rutinasGuardadas";
+
+let modalBackground = document.querySelector(".modal__background");
 
 const cardContainer = document.querySelector(".card__container");
 const cardMain = document.querySelector(".cards__main");
@@ -98,6 +100,11 @@ FavoritosShow.addEventListener("click", () => {
 
 const agregarGuardada = () => {
   let rutinaElegida = routine;
+  let btnFavorite = document.querySelector(".btn-favorite");
+  btnFavorite.disabled = true;
+  btnFavorite.style.backgroundColor = "gray";
+  btnFavorite.textContent = "Added";
+  
   // Ir a buscar al local storage las rutinas guardadas
   let rutinasGuardadas = getLocalStorage(keyRutinas) || [];
 
@@ -501,7 +508,7 @@ function mostrarEjercicios(array) {
 
 function expandirEjercicio(ejercicio) {
   const cardExpand = document.createElement("div");
-  cardContainer.style.opacity="0.5";
+
 
    // Crear el div para los músculos secundarios
    let secondaryMuscles = document.createElement("div");
@@ -533,7 +540,6 @@ function expandirEjercicio(ejercicio) {
         <p class="">${ejercicio.equipment}</p>
       </div>
     </div>
-
     <div class="card__expand-instructions">
       <p>${ejercicio.instructions}</p>
     </div>`;
@@ -542,9 +548,11 @@ function expandirEjercicio(ejercicio) {
   cerrar.addEventListener("click", () => {
     cardExpand.remove();
     cardContainer.style.opacity="1";
+    modalBackground.style.display = "none";
   });
 
-  cardMain.appendChild(cardExpand);
+  modalBackground.appendChild(cardExpand);
+  modalBackground.style.display = "flex";
 }
 
 
@@ -552,6 +560,8 @@ function mostrarFavoritos(array) {
 
   loader.style.display = "block";
   cardMain.style.display = "none";
+
+gmusculares.style.display = "none";
 
   // Ocultar gmusculares después de mostrar el loader
   levelSection.style.display = "none";
@@ -561,7 +571,9 @@ function mostrarFavoritos(array) {
       // Ocultar el loader
       loader.style.display = "none";
       cardMain.style.display = "flex";
+      let btnFavorites = document.querySelector(".btn-favorites");
 
+      btnFavorites.style.display = "none";
       reroll.style.display = "none";
 
   cardContainer.innerHTML = "";
@@ -569,7 +581,17 @@ function mostrarFavoritos(array) {
   const cardTitle = document.querySelector(".card-title");
   cardTitle.textContent = "Saved Routines";
 
-  array.forEach((rutina) => {
+if(array.length === 0){
+  let noRoutines = document.createElement("div");
+  noRoutines.className = "no-routines";
+  noRoutines.innerHTML = `
+  <h2 class="text-xl">No routines saved</h2> 
+  <a href="" class="button button--green">New routine</a>
+  `;
+
+  cardContainer.appendChild(noRoutines);
+}else{
+   array.forEach((rutina) => {
     // Crear un div para contener todos los ejercicios de esta rutina
     let cardsMain = document.querySelector(".cards__main");
     cardsMain.style.display = "flex";
@@ -619,6 +641,9 @@ function mostrarFavoritos(array) {
  
     cardContainer.appendChild(routineDiv);
   });
+}
+
+ 
   }, 500);
 }
 

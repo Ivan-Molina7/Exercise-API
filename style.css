@@ -1,4 +1,4 @@
-* {
+/* * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
@@ -34,7 +34,7 @@ body {
 }
 
 .card{
-	/* display: none; */
+	/* display: none; 
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -76,4 +76,4 @@ body {
 	background-color: aquamarine;
 	padding: 8px;
 	cursor: pointer;
-}
+} */

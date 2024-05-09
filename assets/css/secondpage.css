@@ -98,7 +98,7 @@ li {
 	cursor: pointer !important;
 	text-align: center;
 	transition: 0.5s;
-   width: 170px !important;
+ 
 
   }
 
@@ -126,6 +126,11 @@ li {
 	
 	gap: .5em;
   }
+
+  .mostrarFavorite{
+	transition: color 0.5s ease, transform 0.5s ease;
+
+}
   
 
 .header {
@@ -138,8 +143,6 @@ li {
 	color: var(--text-color);
 	top: 0;
 }
-
-
 
 .header__nav {
 	order: 2;
@@ -410,11 +413,20 @@ li {
 }
 
 .cards__titles{
-	
+	flex-wrap: wrap;
 	gap: 1em;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	margin-bottom: 40px;
+}
+
+.cards__titles h1{
+	margin-bottom: 0;
+}
+
+.cards__titles p{
+	width: 100%;
 }
 
 .cards__titles .buttons{
@@ -472,6 +484,8 @@ li {
 	margin: 0;
 }
 
+
+
 .btn-mostrarFavorite{
 	background-color: rgb(182, 49, 42);
 	color: var(--text-color) !important;
@@ -481,6 +495,7 @@ li {
 	background-color: rgb(42, 182, 82);
 	color: white !important;
 }
+
 
 .card {
 	min-height: 450px;

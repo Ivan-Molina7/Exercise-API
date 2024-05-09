@@ -493,6 +493,7 @@ function mostrarFavoritos(array) {
       noRoutines.innerHTML = `
   <h2 class="text-xl">No routines saved</h2> 
   <a href="" class="button button--green">New routine</a>
+
   `;
 
       cardContainer.appendChild(noRoutines);
@@ -571,6 +572,7 @@ const agregarGuardada = () => {
   const btnFavorite = document.querySelector(".btn-favorite");
   btnFavorite.disabled = true;
   btnFavorite.style.backgroundColor = "gray";
+  btnFavorite.style.opacity = 0.5;
   btnFavorite.textContent = "Added";
 
   // Ir a buscar al local storage las rutinas guardadas
@@ -591,5 +593,13 @@ const agregarGuardada = () => {
     // Guardar la lista de rutinas actualizada en el local storage
     setLocalStorage(keyRutinas, rutinasGuardadas);
     console.log("¡Rutina agregada a favoritos!");
+
+    favoritosShow.style.color = "red";
+  
+    setTimeout(() => {
+      favoritosShow.style.color = "white";
+  
+
+    }, 300);
   }
 };

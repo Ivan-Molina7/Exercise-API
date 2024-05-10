@@ -1,4 +1,10 @@
-import { getLocalStorage, setLocalStorage,filterParamMuscle2,filterParamMuscle3  } from "./utils.js";
+import {
+  cargarEjerciciosAPI,
+  getLocalStorage,
+  setLocalStorage,
+  filterParamMuscle2,
+  filterParamMuscle3,
+} from "./utils.js";
 import { loader, levelSection, gmusculares } from "./process.js";
 
 // Selectores de elementos del DOM
@@ -9,7 +15,7 @@ const pierna = document.querySelector(".pierna");
 const beginner = document.querySelector(".beginner");
 const intermediate = document.querySelector(".intermediate");
 const reroll = document.querySelector(".btn-reroll");
-const favoritosShow = document.querySelector(".mostrarFavorite");
+const favoritosShow = document.querySelectorAll(".mostrarFavorite");
 const btnFavoritosShow = document.querySelector(".btn-mostrarFavorite");
 const modalBackground = document.querySelector(".modal__background");
 const cardContainer = document.querySelector(".card__container");
@@ -24,7 +30,6 @@ let resultParamMuscle3Filter = [];
 let resultParamMuscle4Filter = [];
 let routine = [];
 const keyRutinas = "rutinasGuardadas";
-
 
 pecho.addEventListener("click", () => {
   paramMuscle1 = "chest";
@@ -75,16 +80,17 @@ reroll.addEventListener("click", () => {
   rutinaAleatoria();
 });
 
-favoritosShow.addEventListener("click", () => {
-  const rutinasGuardadas = getLocalStorage(keyRutinas) || [];
-  mostrarFavoritos(rutinasGuardadas);
+favoritosShow.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const rutinasGuardadas = getLocalStorage(keyRutinas) || [];
+    mostrarFavoritos(rutinasGuardadas);
+  });
 });
 
 btnFavoritosShow.addEventListener("click", () => {
   const rutinasGuardadas = getLocalStorage(keyRutinas) || [];
   mostrarFavoritos(rutinasGuardadas);
 });
-
 
 function randomExercises(array, numCant) {
   let exercisesPerMuscle;
@@ -150,20 +156,10 @@ const cargarEjercicios = async () => {
   routine = [];
   cardContainer.innerHTML = ``;
 
-  const url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${paramMuscle1}?limit=150`;
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "432cdc51ecmsh35a38ca3bee445bp19f01bjsn1905aeb55b0c",
-      "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-    },
-  };
-
   try {
-    const response = await fetch(url, options);
-    const resultParamMuscle = await response.json();
+    const resultParamMuscle = await cargarEjerciciosAPI(paramMuscle1);
 
-    if (response.status === 200) {
+    if (resultParamMuscle && resultParamMuscle.length > 0) {
       if (paramMuscle1 === "upper arms") {
         resultParamMuscle1Filter = filterParamMuscle3(
           resultParamMuscle,
@@ -194,9 +190,13 @@ const cargarEjercicios = async () => {
         console.log("Hubo un error y no sabemos que paso");
       }
     } else {
+      console.error(
+        "No se encontraron ejercicios para el grupo muscular: ",
+        paramMuscle1
+      );
     }
   } catch (error) {
-    console.log(error);
+    console.error("Error al cargar ejercicios:", error);
   }
 
   randomExercises(resultParamMuscle1Filter);
@@ -205,19 +205,10 @@ const cargarEjercicios = async () => {
 };
 
 const cargarEjerciciosPierna = async () => {
-  let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${paramMuscle1}?limit=150`;
-  let options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "432cdc51ecmsh35a38ca3bee445bp19f01bjsn1905aeb55b0c",
-      "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-    },
-  };
   try {
-    const response = await fetch(url, options);
-    const resultParamMuscle = await response.json();
+    const resultParamMuscle = await cargarEjerciciosAPI(paramMuscle1);
 
-    if (response.status === 200) {
+    if (resultParamMuscle && resultParamMuscle.length > 0) {
       if (paramMuscle1 === "upper legs") {
         resultParamMuscle1Filter = filterParamMuscle3(
           resultParamMuscle,
@@ -236,21 +227,10 @@ const cargarEjerciciosPierna = async () => {
           "glutes"
         );
 
-        let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${paramMuscle4}?limit=150`;
-        let options = {
-          method: "GET",
-          headers: {
-            "X-RapidAPI-Key":
-              "432cdc51ecmsh35a38ca3bee445bp19f01bjsn1905aeb55b0c",
-            "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-          },
-        };
-
         try {
-          const response = await fetch(url, options);
-          const resultParamMuscle4 = await response.json();
+          const resultParamMuscle4 = await cargarEjerciciosAPI(paramMuscle4);
 
-          if (response.status === 200) {
+          if (resultParamMuscle && resultParamMuscle.length > 0) {
             resultParamMuscle4Filter = filterParamMuscle3(
               resultParamMuscle4,
               "barbell",
@@ -265,11 +245,13 @@ const cargarEjerciciosPierna = async () => {
             console.log("Hubo un error y no sabemos que paso");
           }
         } catch (error) {
-          console.log(error);
+          console.error("Error al cargar ejercicios:", error);
         }
       }
     }
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error al cargar ejercicios:", error);
+  }
 
   randomExercises(resultParamMuscle1Filter, 2);
   randomExercises(resultParamMuscle2Filter, 2);
@@ -279,20 +261,10 @@ const cargarEjerciciosPierna = async () => {
 };
 
 const cargarEjerciciosPecho = async () => {
-  console.log("Entre cargarEjerciciosPecho");
-  let url = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${paramMuscle1}?limit=150`;
-  let options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "432cdc51ecmsh35a38ca3bee445bp19f01bjsn1905aeb55b0c",
-      "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-    },
-  };
   try {
-    const response = await fetch(url, options);
-    const resultParamMuscle = await response.json();
+    const resultParamMuscle = await cargarEjerciciosAPI(paramMuscle1);
 
-    if (response.status === 200) {
+    if (resultParamMuscle && resultParamMuscle.length > 0) {
       if (paramMuscle1 === "chest") {
         resultParamMuscle1Filter = filterParamMuscle2(
           resultParamMuscle,
@@ -301,22 +273,14 @@ const cargarEjerciciosPecho = async () => {
         );
       }
     }
-  } catch (error) {}
-
-  let url2 = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${paramMuscle2}?limit=150`;
-  let options2 = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": "432cdc51ecmsh35a38ca3bee445bp19f01bjsn1905aeb55b0c",
-      "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-    },
-  };
+  } catch (error) {
+    console.error("Error al cargar ejercicios:", error);
+  }
 
   try {
-    const response2 = await fetch(url2, options2);
-    const resultParamMuscle2 = await response2.json();
+    const resultParamMuscle2 = await cargarEjerciciosAPI(paramMuscle2);
 
-    if (response2.status === 200) {
+    if (resultParamMuscle2 && resultParamMuscle2.length > 0) {
       resultParamMuscle2Filter = filterParamMuscle2(
         resultParamMuscle2,
         "barbell",
@@ -330,7 +294,7 @@ const cargarEjerciciosPecho = async () => {
       console.log("Hubo un error y no sabemos que paso");
     }
   } catch (error) {
-    console.log(error);
+    console.error("Error al cargar ejercicios:", error);
   }
 
   if (exerciseAmount == 6) {
@@ -343,7 +307,6 @@ const cargarEjerciciosPecho = async () => {
     mostrarEjercicios(routine);
   }
 };
-
 
 function rutinaAleatoria() {
   routine = [];
@@ -380,7 +343,7 @@ function mostrarEjercicios(array) {
     titleDiv.className = "routine__titles";
     titleDiv.innerHTML = `
       <h2 class="text-xl">Your ${array[0].target} Routine</h2>
-      <a href="#" class="button btn-favorite">Add to favorites</a>
+      <a href="#" class="button btn-favorite">Add to favorites <i class="fa-solid fa-heart"></i></a>
     `;
 
     const routineDiv = document.createElement("div");
@@ -406,14 +369,13 @@ function mostrarEjercicios(array) {
           </div>
           <h3 class="text-xl">${ejercicio.name}</h3>
         `;
-        exerciseDiv.addEventListener("click", () => expandirEjercicio(ejercicio));
+        exerciseDiv.addEventListener("click", () =>
+          expandirEjercicio(ejercicio)
+        );
         routineDiv.appendChild(exerciseDiv);
       }
     });
     cardContainer.appendChild(routineDiv);
-
- 
-   
   }, 500);
 }
 
@@ -510,7 +472,6 @@ function mostrarFavoritos(array) {
       <a href="#" class="button btn-delete">Delete favorites <i class="fa-solid fa-trash"></i></a>
     `;
 
-       
         levelSection.style.display = "none";
 
         const routineDiv = document.createElement("div");
@@ -572,8 +533,10 @@ const agregarGuardada = () => {
   const btnFavorite = document.querySelector(".btn-favorite");
   btnFavorite.disabled = true;
   btnFavorite.style.backgroundColor = "gray";
+  btnFavorite.style.color = "var(--text-colorPrimary)";
   btnFavorite.style.opacity = 0.5;
   btnFavorite.textContent = "Added";
+  btnFavorite.style.border = "2px solid grey";
 
   // Ir a buscar al local storage las rutinas guardadas
   let rutinasGuardadas = getLocalStorage(keyRutinas) || [];
@@ -588,18 +551,18 @@ const agregarGuardada = () => {
     console.log("¡La rutina ya está en favoritos!");
     // Puedes mostrar un mensaje al usuario o realizar otra acción apropiada
   } else {
-    // Agregar la rutina elegida a la lista de rutinas guardadas en primer lugar 
+    // Agregar la rutina elegida a la lista de rutinas guardadas en primer lugar
     rutinasGuardadas.unshift(rutinaElegida);
     // Guardar la lista de rutinas actualizada en el local storage
     setLocalStorage(keyRutinas, rutinasGuardadas);
     console.log("¡Rutina agregada a favoritos!");
 
-    favoritosShow.style.color = "red";
-  
-    setTimeout(() => {
-      favoritosShow.style.color = "white";
-  
-
-    }, 300);
+    favoritosShow.forEach((element) => {
+      element.style.color = "red";
+    
+      setTimeout(() => {
+        element.style.color = "white";
+      }, 300);
+    });
   }
 };

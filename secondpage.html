@@ -4,32 +4,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/normalize.css">
+  <title>World Gym</title>
+  <link rel="shortcut icon" href="assets/img/icono.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/components/normalize.css">
+  <link rel="stylesheet" href="assets/css/components/components.css">
   <link rel="stylesheet" href="assets/css/secondpage.css">
+  <link rel="stylesheet" href="assets/css/components/buttons.css">
+  <link rel="stylesheet" href="assets/css/components/variables.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Create your own routine</title>
+  <title>WorldGym Create your own routine</title>
 </head>
 
 <body>
-  <header class="header container container">
-    <nav class="header__nav">
-      <ul class="header__nav-list">
-        <li class="header__nav-item"><a href="#" class="header__nav-link">Home</a></li>
-        <li class="header__nav-item"><a href="#" class="header__nav-link">About us</a></li>
-        <li class="header__nav-item"><a href="" class="header__nav-link">Create your routine</a></li>
-        <li class="header__nav-item"><a href="#" class="header__nav-link mostrarFavorite">Favorites</a></li>
-        <a href="#" class="header__nav-link button contact"><i class="fas fa-user"></i> Log in</a>
-      </ul>
-    </nav>
-
-
+  <header class="header container">
     <figure class="header__logo">
-      <a href="" class="header__logo-link">
+      <a href="index.html" class="header__logo-link">
         <img src="assets/img/logo-white.png" alt="Brand logo Growth" class="header__logo-image">
       </a>
     </figure>
+
+
+    <nav class="header__nav">
+      <ul class="header__nav-list">
+        <li class="header__nav-item"><a href="index.html#hero" class="header__nav-link">Home</a></li>
+        <li class="header__nav-item"><a href="index.html#build" class="header__nav-link">Build</a></li>
+        <li class="header__nav-item"><a href="index.html#about" class="header__nav-link">About us</a></li>
+        <li class="header__nav-item"><a href="index.html#faq" class="header__nav-link">Faq</a></li>
+      </ul>
+
+
+
+      <div class="nav2-user">
+        <ul class="header__nav-list">
+          <li class="header__nav-item"><a href="" class="header__nav-link">Create your routine</a></li>
+          <li class="header__nav-item"><a href="#" class="header__nav-link mostrarFavorite">Favorites</a></li>
+          <a href="#" class="header__nav-link button contact"><i class="fas fa-user"></i> Log
+            in</a>
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
 
 
   </header>
@@ -43,33 +65,33 @@
     <div class="gmusculares">
 
 
-      <h1 class="text-xl">CHOOSE YOUR MUSCLE</h1>
+      <h1 class="text-xl title-line--center">CHOOSE YOUR MUSCLE</h1>
       <div class="gmusculares__container">
 
         <div class="gmuscular-card espalda">
           <figure class="gmuscular-card__thumbnail">
-            <img src="assets/img/secondpage/pecho.png" alt="">
+            <img src="assets/img/secondpage/espalda.png.webp" alt="">
           </figure>
           <h2 class="text-xl">BACK</h2>
         </div>
 
         <div class="gmuscular-card pecho">
           <figure class="gmuscular-card__thumbnail">
-            <img src="assets/img/secondpage/pecho.png" alt="">
+            <img src="assets/img/secondpage/pecho.png.webp" alt="">
           </figure>
           <h2 class="text-xl">CHEST</h2>
         </div>
 
         <div class="gmuscular-card brazos">
           <figure class="gmuscular-card__thumbnail">
-            <img src="assets/img/secondpage/pecho.png" alt="">
+            <img src="assets/img/secondpage/triceps.png.webp" alt="">
           </figure>
           <h2 class="text-xl">ARMS</h2>
         </div>
 
         <div class="gmuscular-card pierna">
           <figure class="gmuscular-card__thumbnail">
-            <img src="assets/img/secondpage/pecho.png" alt="">
+            <img src="assets/img/secondpage/piernas.png.webp" alt="">
           </figure>
           <h2 class="text-xl">LEGS</h2>
         </div>
@@ -81,16 +103,16 @@
 
     <div class="level-section">
 
-      <h1 class="text-xl">CHOOSE YOUR LEVEL</h1>
+      <h1 class="text-xl title-line--center">CHOOSE YOUR LEVEL</h1>
 
       <div class="level__container">
         <div class="level-card beginner">
-          <img src="assets/img/secondpage/pecho.png" alt="">
+          <img src="assets/img/secondpage/beginner.png" alt="">
           <h2 class="text-xl">BEGINNER</h2>
         </div>
 
         <div class="level-card intermediate">
-          <img src="assets/img/secondpage/pecho.png" alt="">
+          <img src="assets/img/secondpage/intermediate.jpg" alt="">
           <h2 class="text-xl">INTERMEDIATE</h2>
         </div>
 
@@ -98,57 +120,49 @@
     </div>
     <div class="cards__main container">
       <div class="cards__titles">
-        <h1 class="text-xl card-title">YOUR CUSTOM ROUTINE</h1>
+        <h1 class="text-xl card-title title-line--left">YOUR CUSTOM ROUTINE</h1>
         <div class="buttons">
-          <a href="#" class="button btn-reroll button--blue">Re-roll Routine</a>
-          <a href="#" class="button btn-mostrarFavorite">Favorites page</a>
+          <a href="#" class="button btn-reroll button--blue ">Re-roll Routine <i class="fa-solid fa-dice"></i></a>
+          <a href="#" class="button btn-mostrarFavorite ">Favorites page <i class="fa-solid fa-bookmark"></i></a>
         </div>
-     
+
       </div>
-      <div class="card__container"> 
+      <div class="card__container">
       </div>
     </div>
   </main>
 
   <footer class="footer container">
     <figure class="footer__thumbnail">
-      <img src="assets/img/logo-white.png" alt="" class="footer__image">
+      <a href="index.html"> <img src="assets/img/logo-whitexl.png" alt="" class="footer__image"></a>
     </figure>
     <ul class="footer__list">
       <p>Principal Page </p>
-      <li class="footer__list-item"><a href="">Home</a></li>
-      <li class="footer__list-item"><a href="">Create your routine</a></li>
-      <li class="footer__list-item"><a href="">About us</a></li>
-      <li class="footer__list-item"><a href="">Faq</a></li>
+      <li class="footer__list-item"><a href="index.html#hero">Home</a></li>
+      <li class="footer__list-item"><a href="index.html#build">Build</a></li>
+      <li class="footer__list-item"><a href="index.html#about">About us</a></li>
+      <li class="footer__list-item"><a href="index.html#faq">Faq</a></li>
     </ul>
     <ul class="footer__list">
       <p>Your Routine page</p>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
+      <li class="footer__list-item"><a href="">Create your routine</a></li>
+      <li class="footer__list-item mostrarFavorite"><a href="#">Favorites</a></li>
     </ul>
     <ul class="footer__list">
       <p>Contact</p>
-      <li class="footer__list-item"><a href="">Cuareim 1245</a></li>
-      <li class="footer__list-item"><a href="">Cuareim 1245</a></li>
+      <li class="footer__list-item"><a href="">Dr José Scoseria 2599-2553</a></li>
       <li class="footer__list-item"><a href="">+598 98 564 253</a></li>
+      <li class="footer__list-item"><a href="">gymroutine@gmail.com</a></li>
       <div class="footer__list-social">
-        <i class="footer__list-social-icon fa-brands fa-instagram"></i>
-        <i class="footer__list-social-icon fa-brands fa-twitter"></i>
-        <i class="footer__list-social-icon fa-brands fa-facebook"></i>
+        <a href="#"> <i class="footer__list-social-icon fa-brands fa-instagram"></i></a>
+        <a href="#"> <i class="footer__list-social-icon fa-brands fa-twitter"></i></a>
+        <a href="#"> <i class="footer__list-social-icon fa-brands fa-facebook"></i></a>
       </div>
     </ul>
   </footer>
 
-  <script type="module" src="js/variables.js"></script>
   <script type="module" src="js/process.js"></script>
   <script type="module" src="js/routineCreator.js"></script>
 </body>
 
 </html>
-
-
-<!-- <h1 class="reroll">Crear otra</h1>
-    
-<h1 class="mostrarFavorite">mostrarFavorite</h1> -->

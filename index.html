@@ -1,197 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- <link rel="stylesheet" href="style.css"> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Gym</title>
+  <link rel="shortcut icon" href="assets/img/icono.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/components/normalize.css">
+  <link rel="stylesheet" href="assets/css/components/components.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/components/buttons.css">
+  <link rel="stylesheet" href="assets/css/components/variables.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
+
 <body>
- <div class="hero">
-  <header class="header container">
-    <nav class="header__nav">
-      <ul class="header__nav-list">
-        <li class="header__nav-item"><a href="#" class="header__nav-link">Home</a></li>
-        <li class="header__nav-item"><a href="#" class="header__nav-link">Build</a></li>
-        <li class="header__nav-item"><a href="#" class="header__nav-link">About us</a></li>
-          <li class="header__nav-item"><a href="#" class="header__nav-link">Faq</a></li>
-      </ul>
-  </nav>
+  <div class="hero" id="hero">
+    <div class="hero__video-container">
+      <video autoplay loop muted class="hero__video">
+        <source src="assets/video/herovideo.mp4" type="video/mp4">
+        <!-- Incluye más etiquetas <source> si tienes otros formatos -->
+        Tu navegador no admite la reproducción de video.
+      </video>
+    </div>
 
 
-    <figure class="header__logo">
+
+    <header class="header container">
+      <figure class="header__logo">
         <a href="" class="header__logo-link">
-            <img src="assets/img/logo-white.png" alt="Brand logo Growth" class="header__logo-image">
+          <img src="assets/img/logo-white.png" alt="Brand logo Growth" class="header__logo-image">
         </a>
-    </figure>
+      </figure>
+
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item"><a href="#Hhome" class="header__nav-link">Home</a></li>
+          <li class="header__nav-item"><a href="#build" class="header__nav-link">Build</a></li>
+          <li class="header__nav-item"><a href="#about" class="header__nav-link">About us</a></li>
+          <li class="header__nav-item"><a href="#faq" class="header__nav-link">Faq</a></li>
+        </ul>
 
 
-   <div class="nav2">
-      <ul class="header__nav-list">
-        <li class="header__nav-item"><a href="#" class="header__nav-link">Create your routine</a></li>
-        <li class="header__nav-item"><a href="#" class="header__nav-link">Favorites</a></li>
-          <a href="#" class="header__nav-link button contact"><i class="fas fa-user"></i> Log
-            in</a>
-      </ul>
-   </div>
-</header>
+
+        <div class="nav2-user">
+          <ul class="header__nav-list">
+            <li class="header__nav-item"><a href="secondpage.html" class="header__nav-link">Create your routine</a></li>
+            <li class="header__nav-item"><a href="secondpage.html" class="header__nav-link">Favorites</a></li>
+            <a href="#" class="header__nav-link button contact"><i class="fas fa-user"></i> Log
+              in</a>
+          </ul>
+        </div>
+      </nav>
+
+
+      <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+
+
+    </header>
 
     <div class="hero__content container">
-      <h1 class="text-xxl">Build your own routine</h1>
-      <h3 class="text-lg">World fitness</h3>
-      <a href="#" class="button">About us <i class="fa-solid fa-arrow-right"></i></a>
-    </div>
- </div>
-
- <section class="section-one">
-
-    <div class="section-one__content container">
-      <h2 class="text-xl">Build your own routine</h2>
-      <p class="text-sm">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam nihil repudiandae voluptate.</p>
-      <a href="#" class="button">Create</a>
+      <h1 class="text-xxl">Transform Your Body, Transform Your Life</h1>
+      <h3 class="text-lg">Discover the freedom of crafting your own workout routine</h3>
+      <a href="#about" class="button">About us <i class="fa-solid fa-arrow-right"></i></a>
     </div>
 
- </section>
+    <a href="#build">
+      <i class="fa-solid fa-chevron-down "></i>
+    </a>
+  </div>
 
- <section class="section-two container">
+  <section class="section-one" id="build">
+
+    <div class="section-one__content container-md">
+      <h2 class="text-xl title-line--center">Build your own routine</h2>
+      <p class="text-md">Unlock the potential of crafting your personal fitness regimen. Customize workouts to suit your
+        individual requirements and embark on a path to improved well-being and a more resilient you.</p>
+
+      <a href="secondpage.html" class="button">Create Now</a>
+    </div>
+
+  </section>
+
+  <section class="section-two container" id="about">
     <div class="section-two__texts">
-      <h2 class="text-xl">Build your own routine</h2>
-      <p class="text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas aut necessitatibus maiores rem ut dolores. Excepturi ullam provident facere ea minus velit libero explicabo? Tempore veritatis pariatur dolores, possimus ipsum blanditiis quod sapiente quo laudantium aperiam ipsa dolorem ducimus suscipit, nihil accusamus magnam. Perferendis, nam esse, ab eveniet repellat beatae exercitationem earum rem aperiam voluptates non explicabo consectetur fugit labore quo placeat ex numquam quaerat? Itaque animi, maxime sed aliquam consectetur temporibus, a ullam sequi, vitae optio iste eos! Vel?</p>
+      <h2 class="text-xl title-line--left">About us</h2>
+      <p class="text-sm">Welcome to our community, where empowerment meets fitness. At our core, we believe in putting
+        you in the driver's seat of your wellness journey. Our platform equips you with the resources to curate a
+        tailored workout plan that aligns with your objectives, lifestyle, and preferences. Whether your aim is to shed
+        pounds, sculpt muscles, or maintain an active lifestyle, our platform ensures flexibility and adaptability to
+        meet your needs.</p>
+
+      <p class="text-sm">Dive into a world of diverse exercises, expert guidance, and motivational insights that inspire
+        progress and effectiveness. Regardless of your fitness level, from novices to seasoned athletes, our platform
+        offers something for everyone to challenge themselves and reach new milestones. Don't hesitate to take the first
+        step towards transforming your life. Start sculpting your optimal fitness journey with us today!</p>
     </div>
     <figure class="section-two__thumbnail">
       <img src="assets/img/hero.png" alt="" class="section-two__image">
     </figure>
- </section>
+  </section>
 
- <section class="section-three container-md ">
+  <section class="section-three container-md" id="faq">
     <div class="section-three__texts">
-      <h3 class="text-xl">Frequently Asked Questions</h3>
-      <p class="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+      <h3 class="text-xl title-line--center">Frequently Asked Questions</h3>
+      <p class="text-sm">Got questions about our fitness platform? Check out the FAQs below.</p>
     </div>
 
     <div class="faq">
       <button class="faq__button">
-        Lorem ipsum dolor sit?
+        What is this platform about?
         <i class="fa-solid fa-chevron-down"></i>
       </button>
       <div class="pannel">
         <p>
-          Krushi is a Public Charitable Trust designed to carry out farming on
-          extensive scale Natural & Sustainable methods.
+          Our platform is dedicated to helping individuals customize their workout routines. Whether you're a beginner
+          or an experienced athlete, you can tailor exercises to your specific needs and goals.
         </p>
       </div>
     </div>
 
     <div class="faq">
       <button class="faq__button ">
-       Lorem ipsum dolor sit?
+        How can I create my own routine?
         <i class="fa-solid fa-chevron-down"></i>
       </button>
       <div class="pannel">
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-          saepe molestiae distinctio asperiores cupiditate consequuntur dolor
-          ullam, iure eligendi harum eaque hic corporis debitis porro
-          consectetur voluptate rem officiis architecto.
+          To create your own routine, navigate to the "Create Your Routine" section on our platform. From there, you can
+          select exercises for different muscle groups and specify your fitness level.
         </p>
       </div>
     </div>
 
     <div class="faq">
       <button class="faq__button">
-        Lorem ipsum dolor sit?
+        Can I save my favorite routines?
         <i class="fa-solid fa-chevron-down"></i>
       </button>
       <div class="pannel">
         <p>
-          Krushi is a Public Charitable Trust designed to carry out farming on
-          extensive scale Natural & Sustainable methods.
+          Yes, you can! Simply mark your favorite routines by clicking the "Favorites" button. This allows you to access
+          them easily for future reference.
         </p>
       </div>
     </div>
 
     <div class="faq">
       <button class="faq__button ">
-       Lorem ipsum dolor sit?
+        Is this platform suitable for all fitness levels?
         <i class="fa-solid fa-chevron-down"></i>
       </button>
       <div class="pannel">
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-          saepe molestiae distinctio asperiores cupiditate consequuntur dolor
-          ullam, iure eligendi harum eaque hic corporis debitis porro
-          consectetur voluptate rem officiis architecto.
+          Absolutely! Our platform caters to individuals of all fitness levels, from beginners to advanced athletes. You
+          can customize your routine based on your current abilities and goals.
         </p>
       </div>
     </div>
 
     <div class="faq">
       <button class="faq__button">
-        Lorem ipsum dolor sit?
+        How can I contact customer support?
         <i class="fa-solid fa-chevron-down"></i>
       </button>
       <div class="pannel">
         <p>
-          Krushi is a Public Charitable Trust designed to carry out farming on
-          extensive scale Natural & Sustainable methods.
+          If you have any questions or concerns, please feel free to contact our customer support team at
+          gymroutine@gmail.com or give us a call at +598 98 564 253. We're here to help!
         </p>
       </div>
     </div>
 
-    <div class="faq">
-      <button class="faq__button ">
-       Lorem ipsum dolor sit?
-        <i class="fa-solid fa-chevron-down"></i>
-      </button>
-      <div class="pannel">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facilis
-          saepe molestiae distinctio asperiores cupiditate consequuntur dolor
-          ullam, iure eligendi harum eaque hic corporis debitis porro
-          consectetur voluptate rem officiis architecto.
-        </p>
-      </div>
-    </div>
-
-    
-
- </section>
- <footer class="footer container">
+  </section>
+  <footer class="footer container">
     <figure class="footer__thumbnail">
-        <img src="assets/img/logo-white.png" alt="" class="footer__image">
+      <a href="index.html"> <img src="assets/img/logo-whitexl.png" alt="" class="footer__image"></a>
+
     </figure>
     <ul class="footer__list">
       <p>Principal Page </p>
-      <li class="footer__list-item"><a href="">Home</a></li>
-      <li class="footer__list-item"><a href="">Create your routine</a></li>
-      <li class="footer__list-item"><a href="">About us</a></li>
-      <li class="footer__list-item"><a href="">Faq</a></li>
+      <li class="footer__list-item"><a href="#hero">Home</a></li>
+      <li class="footer__list-item"><a href="#build">Build</a></li>
+      <li class="footer__list-item"><a href="#about">About us</a></li>
+      <li class="footer__list-item"><a href="#faq">Faq</a></li>
     </ul>
     <ul class="footer__list">
       <p>Your Routine page</p>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
-      <li class="footer__list-item"><a href="">Lorem, ipsum.</a></li>
+      <li class="footer__list-item"><a href="secondpage.html">Create your routine</a></li>
+      <li class="footer__list-item mostrarFavorite"><a href="secondpage.html">Favorites</a></li>
     </ul>
     <ul class="footer__list">
       <p>Contact</p>
-      <li class="footer__list-item"><a href="">Cuareim 1245</a></li>
+      <li class="footer__list-item">Dr José Scoseria 2599-2553</li>
       <li class="footer__list-item"><a href="">+598 98 564 253</a></li>
-    <div class="footer__list-social">
-      <i class="footer__list-social-icon fa-brands fa-instagram"></i>
-      <i class="footer__list-social-icon fa-brands fa-twitter"></i>
-      <i class="footer__list-social-icon fa-brands fa-facebook"></i>
-    </div>
+      <li class="footer__list-item"><a href="">gymroutine@gmail.com</a></li>
+      <div class="footer__list-social">
+        <a href="#"> <i class="footer__list-social-icon fa-brands fa-instagram"></i></a>
+        <a href="#"> <i class="footer__list-social-icon fa-brands fa-twitter"></i></a>
+        <a href="#"> <i class="footer__list-social-icon fa-brands fa-facebook"></i></a>
+      </div>
     </ul>
- </footer>
- <script type="module" src="js/variables.js"></script>
-  <script type="module" src="js/main.js"></script>
+  </footer>
+
+  <script type="module" src="js/utils.js"></script>
+  <script type="module" src="js/index.js"></script>
 
 </body>
+
 </html>

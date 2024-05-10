@@ -1,0 +1,74 @@
+.button {
+    /* Estilos comunes */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 13px 20px;
+    color: var(--text-colorSecondary);
+    background-color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 2px;
+    cursor: pointer !important;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.button:hover {
+    background-color: unset;
+    color: var(--text-colorPrimary);
+}
+
+
+.btn-delete {
+    background-color: #e63b3b;
+    border: 2px solid #e63b3b;
+    color: var(--text-colorPrimary);
+    width: 210px !important;
+    gap: .5em;
+
+}
+
+
+.btn-delete:hover {
+    background-color: unset;
+    color: #e63b3b;
+}
+
+
+.btn-favorite {
+    color: var(--text-color);
+    background-color: var(--primary-color2);
+    border: 2px solid var(--primary-color2);
+}
+
+.btn-favorite:hover {
+    background-color: unset;
+    color: var(--primary-color2);
+}
+
+
+.btn-mostrarFavorite {
+    background-color: rgb(182, 49, 42);
+    color: var(--text-color) !important;
+    border: 2px solid #a6312a;
+}
+
+.btn-mostrarFavorite:hover {
+    background-color: unset;
+    color: rgb(182, 49, 42) !important;
+
+}
+
+.btn-reroll {
+    background-color: #7986cb;
+    border: 2px solid #7986cb;
+    color: var(--text-colorPrimary);
+}
+
+.btn-reroll:hover {
+    background-color: unset;
+    color: #7986cb;
+}
